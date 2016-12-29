@@ -187,7 +187,7 @@
 	mineralChance = 6
 	mineralSpawnChanceList = list(
 		/turf/closed/mineral/uranium = 2, /turf/closed/mineral/diamond = 1, /turf/closed/mineral/gold = 4, /turf/closed/mineral/titanium = 4,
-		/turf/closed/mineral/silver = 6, /turf/closed/mineral/plasma = 15, /turf/closed/mineral/iron = 40,
+		/turf/closed/mineral/silver = 6, /turf/closed/mineral/plasma = 15, /turf/closed/mineral/iron = 40, /turf/closed/mineral/dore = 20,
 		/turf/closed/mineral/bscrystal = 1)
 
 
@@ -197,11 +197,10 @@
 	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	defer_change = 1
-
 	mineralChance = 10
 	mineralSpawnChanceList = list(
 		/turf/closed/mineral/uranium/volcanic = 5, /turf/closed/mineral/diamond/volcanic = 1, /turf/closed/mineral/gold/volcanic = 10, /turf/closed/mineral/titanium/volcanic = 11,
-		/turf/closed/mineral/silver/volcanic = 12, /turf/closed/mineral/plasma/volcanic = 20, /turf/closed/mineral/iron/volcanic = 40,
+		/turf/closed/mineral/silver/volcanic = 12, /turf/closed/mineral/plasma/volcanic = 20, /turf/closed/mineral/iron/volcanic = 40, /turf/closed/mineral/dore/volcanic = 20,
 		/turf/closed/mineral/gibtonite/volcanic = 4, /turf/open/floor/plating/asteroid/airless/cave/volcanic = 1, /turf/closed/mineral/bscrystal/volcanic = 1)
 
 /turf/closed/mineral/random/volcanic/no_cave
@@ -212,13 +211,13 @@
 	mineralChance = 10
 	mineralSpawnChanceList = list(
 		/turf/closed/mineral/diamond/volcanic/normal_air = 1, /turf/closed/mineral/gold/volcanic/normal_air = 10,
-		/turf/closed/mineral/silver/volcanic/normal_air = 12, /turf/closed/mineral/iron/volcanic/normal_air = 40,
+		/turf/closed/mineral/silver/volcanic/normal_air = 12, /turf/closed/mineral/iron/volcanic/normal_air = 40, /turf/closed/mineral/dore/volcanic = 20,
 		/turf/closed/mineral/gibtonite/volcanic/normal_air = 4, /turf/closed/mineral/bscrystal/volcanic/normal_air = 1)
 
 
 /turf/closed/mineral/random/labormineral
 	mineralSpawnChanceList = list(
-		/turf/closed/mineral/iron = 100, /turf/closed/mineral/uranium = 1, /turf/closed/mineral/diamond = 1,
+		/turf/closed/mineral/iron = 100, /turf/closed/mineral/dore = 30, /turf/closed/mineral/uranium = 1, /turf/closed/mineral/diamond = 1,
 		/turf/closed/mineral/gold = 1, /turf/closed/mineral/silver = 1, /turf/closed/mineral/plasma = 1)
 	icon_state = "rock_labor"
 
@@ -230,7 +229,7 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	defer_change = 1
 	mineralSpawnChanceList = list(
-		/turf/closed/mineral/iron/volcanic = 100, /turf/closed/mineral/uranium/volcanic = 1, /turf/closed/mineral/diamond/volcanic = 1,
+		/turf/closed/mineral/iron/volcanic = 100, /turf/closed/mineral/dore = 30, /turf/closed/mineral/uranium/volcanic = 1, /turf/closed/mineral/diamond/volcanic = 1,
 		/turf/closed/mineral/gold/volcanic = 1, /turf/closed/mineral/silver/volcanic = 1, /turf/closed/mineral/plasma/volcanic = 1)
 
 
@@ -255,6 +254,22 @@
 	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface/normal_air
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
 	defer_change = 1
+
+/turf/closed/mineral/dore
+	mineralType = /obj/item/weapon/ore/dore
+	spreadChance = 12
+	spread = 1
+	scan_state = "rock_Dwarf"
+	environment_type = "basalt"
+	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface/normal_air
+	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface/normal_air
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
+	defer_change = 1
+
+/turf/closed/mineral/dore/volcanic
+
+
+/turf/closed/mineral/dore/volcanic/normal_air
 
 
 /turf/closed/mineral/uranium

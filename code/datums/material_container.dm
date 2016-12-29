@@ -225,6 +225,11 @@
 	sheet_type = /obj/item/stack/sheet/metal
 	coin_type = /obj/item/weapon/coin/iron
 
+/datum/material/dmetal
+	name = "Dwarf Metal"
+	id = MAT_DMETAL
+	sheet_type = /obj/item/stack/sheet/dmetal
+
 /datum/material/glass
 	name = "Glass"
 	id = MAT_GLASS

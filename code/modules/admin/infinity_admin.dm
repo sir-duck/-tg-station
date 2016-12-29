@@ -36,4 +36,4 @@
 	if(alert("Хочешь ли ты поведать этому миру о результате броска?",,"Да", "Нет") == "Да")
 		world << "<h2 style=\"color:#A50400\">Боги бросили игральную кость [dice], результат [result]</h2>"
 
-	message_admins("[key_name_admin(src)] подкинул(а) игральную кость [dice], результат [result]", 1)
+	message_admins("[key_name_admin(src)] подкинул(а) игральную кость [dice], результат - [result]", 1)

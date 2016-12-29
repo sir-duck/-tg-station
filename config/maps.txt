@@ -31,7 +31,6 @@ endmap
 
 map infinity_metastation
 	friendlyname Infinity Meta Station
-	default
 endmap
 
 map terror_metastation
@@ -49,3 +48,9 @@ endmap
 map pubbystation
 	friendlyname Pubby Station
 endmap
+
+map jtb_dwar
+	friendlyname JOOOONNNCEEENAAAA
+	default
+endmap
+

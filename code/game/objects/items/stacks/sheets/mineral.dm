@@ -22,6 +22,46 @@ Mineral Sheets
 /obj/item/stack/sheet/mineral
 	icon = 'icons/obj/mining.dmi'
 
+
+/*
+ * Dwarf Metal
+ */
+var/global/list/datum/stack_recipe/dmetal_recipes = list ( \
+	new/datum/stack_recipe("stool", /obj/structure/chair/stool, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("bar stool", /obj/structure/chair/stool/bar, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("chair", /obj/structure/chair, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("swivel chair", /obj/structure/chair/office/dark, 5, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("comfy chair", /obj/structure/chair/comfy/beige, 2, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("bed", /obj/structure/bed, 2, one_per_turf = 1, on_floor = 1), \
+)
+/obj/item/stack/sheet/mineral/dmetal
+	name = "Dwarf metal"
+	desc = "Sheets made out of special fucking cool dwarf metal."
+	singular_name = "dmetal sheet"
+	icon_state = "sheet-dmetal"
+	materials = list(MAT_DMETAL=MINERAL_MATERIAL_AMOUNT)
+	throwforce = 10
+	throw_speed = 3
+	throw_range = 5
+	flags = CONDUCT
+	origin_tech = "materials=6"
+	resistance_flags = FIRE_PROOF
+	merge_type = /obj/item/stack/sheet/dmetal
+	sheettype = "dmetal"
+
+/obj/item/stack/sheet/dmetal/fifty
+	amount = 50
+
+/obj/item/stack/sheet/dmetal/five
+	amount = 5
+
+/obj/item/stack/sheet/dmetal/New(var/loc, var/amount=null)
+	recipes = dmetal_recipes
+	pixel_x = rand(0,4)-4
+	pixel_y = rand(0,4)-4
+	return ..()
+
+
 /*
  * Sandstone
  */

@@ -1,9 +1,9 @@
 /**********************Ore Redemption Unit**************************/
 //Turns all the various mining machines into a single unit to speed up mining and establish a point system
 
-/obj/machinery/mineral/ore_redemption
-	name = "ore redemption machine"
-	desc = "A machine that accepts ore and instantly transforms it into workable material sheets. Points for ore are generated based on type and can be redeemed at a mining equipment vendor."
+/obj/machinery/mineral/ore_redemption/dwarf
+	name = "dwarfic ore redemption machine"
+	desc = "A machine that accepts ore and instantly transforms it into workable material sheets. Only for dwarfs!"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "ore_redemption"
 	density = 1
@@ -11,34 +11,29 @@
 	input_dir = NORTH
 	output_dir = SOUTH
 	req_access = list(access_mineral_storeroom)
-	var/stk_types = list()
-	var/stk_amt   = list()
-	var/stack_list[0] //Key: Type.  Value: Instance of type.
-	var/obj/item/weapon/card/id/inserted_id
-	var/points = 0
-	var/ore_pickup_rate = 15
-	var/sheet_per_ore = 1
-	var/point_upgrade = 1
-	var/list/ore_values = list(("sand" = 1), ("iron" = 1), ("dmetal" = 10), ("plasma" = 15), ("silver" = 16), ("gold" = 18), ("titanium" = 30), ("uranium" = 30), ("diamond" = 50), ("bluespace crystal" = 50), ("bananium" = 60))
+//	var/stack_list[0] //Key: Type.  Value: Instance of type.
+//	var/obj/item/weapon/card/id/inserted_id
+//	var/points = 0
+//	var/ore_pickup_rate = 15
+	sheet_per_ore = 1.5
+//	var/point_upgrade = 1
+//	var/list/ore_values = list(("sand" = 1), ("iron" = 1), ("dmetal" = 10), ("plasma" = 15), ("silver" = 16), ("gold" = 18), ("titanium" = 30), ("uranium" = 30), ("diamond" = 50), ("bluespace crystal" = 50), ("bananium" = 60))
 	speed_process = 1
 
-/obj/machinery/mineral/ore_redemption/New()
+/obj/machinery/mineral/ore_redemption/dwarf/New()
 	..()
-	var/obj/item/weapon/circuitboard/machine/B = new /obj/item/weapon/circuitboard/machine/ore_redemption(null)
+	var/obj/item/weapon/circuitboard/machine/B = new /obj/item/weapon/circuitboard/machine/ore_redemption/dwarf(null)
 	B.apply_default_parts(src)
 
-/obj/item/weapon/circuitboard/machine/ore_redemption
-	name = "circuit board (Ore Redemption)"
+/obj/item/weapon/circuitboard/machine/ore_redemption/dwarf
+	name = "circuit board (Ore Redemption) dwarf"
 	build_path = /obj/machinery/mineral/ore_redemption
 	origin_tech = "programming=1;engineering=2"
 	req_components = list(
 							/obj/item/weapon/stock_parts/console_screen = 1,
-							/obj/item/weapon/stock_parts/matter_bin = 1,
-							/obj/item/weapon/stock_parts/micro_laser = 1,
-							/obj/item/weapon/stock_parts/manipulator = 1,
 							/obj/item/device/assembly/igniter = 1)
 
-/obj/machinery/mineral/ore_redemption/RefreshParts()
+/* /obj/machinery/mineral/ore_redemption/dwarf/RefreshParts()
 	var/ore_pickup_rate_temp = 15
 	var/point_upgrade_temp = 1
 	var/sheet_per_ore_temp = 1
@@ -50,22 +45,10 @@
 		point_upgrade_temp = 0.65 + (0.35 * L.rating)
 	ore_pickup_rate = ore_pickup_rate_temp
 	point_upgrade = point_upgrade_temp
-	sheet_per_ore = sheet_per_ore_temp
+	sheet_per_ore = sheet_per_ore_temp */
 
-/obj/machinery/mineral/ore_redemption/proc/process_sheet(obj/item/weapon/ore/O)
-	var/obj/item/stack/sheet/processed_sheet = SmeltMineral(O)
-	if(processed_sheet)
-		if(!(processed_sheet in stack_list)) //It's the first of this sheet added
-			var/obj/item/stack/sheet/s = new processed_sheet(src,0)
-			s.amount = 0
-			stack_list[processed_sheet] = s
-		var/obj/item/stack/sheet/storage = stack_list[processed_sheet]
-		storage.amount += sheet_per_ore //Stack the sheets
-		O.loc = null //Let the old sheet...
-		qdel(O) //... garbage collect
-
-/obj/machinery/mineral/ore_redemption/process()
-	if(!panel_open && powered()) //If the machine is partially disassembled and/or depowered, it should not process minerals
+/obj/machinery/mineral/ore_redemption/dwarf/process()
+	if(!panel_open) //If the machine is partially disassembled and/or depowered, it should not process minerals
 		var/turf/T = get_step(src, input_dir)
 		var/i = 0
 		if(T)
@@ -88,28 +71,9 @@
 					else
 						process_sheet(O)
 						i++
-		if(i > 0 && z == ZLEVEL_STATION)
-			var/area/orm_area = get_area(src)
-			var/msg = "Now available in [orm_area.map_name]:"
-			for(var/s in stack_list) // Making an announcement for cargo
-				var/obj/item/stack/sheet/mats = stack_list[s]
-				msg += "\n[capitalize(mats.name)]: [mats.amount] sheets"
-			for(var/obj/machinery/requests_console/D in allConsoles)
-				if(D.department == "Science" || D.department == "Robotics" || D.department == "Research Director's Desk" || D.department == "Chemistry" || D.department == "Bar")
-					D.createmessage("Ore Redemption Machine", "New minerals available!", msg, 1, 0)
+		return
 
-/obj/machinery/mineral/ore_redemption/attackby(obj/item/weapon/W, mob/user, params)
-	if (!powered())
-		return
-	if(istype(W,/obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/I = user.get_active_held_item()
-		if(istype(I) && !istype(inserted_id))
-			if(!user.drop_item())
-				return
-			I.forceMove(src)
-			inserted_id = I
-			interact(user)
-		return
+/obj/machinery/mineral/ore_redemption/dwarf/attackby(obj/item/weapon/W, mob/user, params)
 	if(exchange_parts(user, W))
 		return
 
@@ -126,34 +90,28 @@
 
 	return ..()
 
-/obj/machinery/mineral/ore_redemption/on_deconstruction()
+/obj/machinery/mineral/ore_redemption/dwarf/on_deconstruction()
 	empty_content()
 
-/obj/machinery/mineral/ore_redemption/proc/SmeltMineral(obj/item/weapon/ore/O)
+/* /obj/machinery/mineral/ore_redemption/dwarf/proc/SmeltMineral(obj/item/weapon/ore/O)
 	if(O.refined_type)
 		var/obj/item/stack/sheet/M = O.refined_type
 		points += O.points * point_upgrade
 		return M
 	qdel(O)//No refined type? Purge it.
-	return
+	return */
 
-/obj/machinery/mineral/ore_redemption/attack_hand(mob/user)
+/obj/machinery/mineral/ore_redemption/dwarf/attack_hand(mob/user)
 	if(..())
 		return
 	interact(user)
 
-/obj/machinery/mineral/ore_redemption/interact(mob/user)
+/obj/machinery/mineral/ore_redemption/dwarf/interact(mob/user)
 	var/obj/item/stack/sheet/s
 	var/dat
 
 	dat += text("This machine only accepts ore. Gibtonite and Slag are not accepted.<br><br>")
 	dat += text("Current unclaimed points: [points]<br>")
-
-	if(istype(inserted_id))
-		dat += text("You have [inserted_id.mining_points] mining points collected. <A href='?src=\ref[src];choice=eject'>Eject ID.</A><br>")
-		dat += text("<A href='?src=\ref[src];choice=claim'>Claim points.</A><br>")
-	else
-		dat += text("No ID inserted.  <A href='?src=\ref[src];choice=insert'>Insert ID.</A><br>")
 
 	for(var/O in stack_list)
 		s = stack_list[O]
@@ -185,39 +143,19 @@
 	popup.open()
 	return
 
-/obj/machinery/mineral/ore_redemption/proc/get_ore_values()
+/* /obj/machinery/mineral/ore_redemption/dwarf/proc/get_ore_values()
 	var/dat = "<table border='0' width='300'>"
 	for(var/ore in ore_values)
 		var/value = ore_values[ore]
 		dat += "<tr><td>[capitalize(ore)]</td><td>[value * point_upgrade]</td></tr>"
 	dat += "</table>"
-	return dat
+	return dat */
 
-/obj/machinery/mineral/ore_redemption/Topic(href, href_list)
+/obj/machinery/mineral/ore_redemption/dwarf/Topic(href, href_list)
 	if(..())
 		return
-	if(href_list["choice"])
-		if(istype(inserted_id))
-			if(href_list["choice"] == "eject")
-				inserted_id.loc = loc
-				inserted_id.verb_pickup()
-				inserted_id = null
-			if(href_list["choice"] == "claim")
-				if(access_mining_station in inserted_id.access)
-					inserted_id.mining_points += points
-					points = 0
-				else
-					usr << "<span class='warning'>Required access not found.</span>"
-		else if(href_list["choice"] == "insert")
-			var/obj/item/weapon/card/id/I = usr.get_active_held_item()
-			if(istype(I))
-				if(!usr.drop_item())
-					return
-				I.loc = src
-				inserted_id = I
-			else usr << "<span class='warning'>No valid ID.</span>"
 	if(href_list["release"])
-		if(check_access(inserted_id) || allowed(usr)) //Check the ID inside, otherwise check the user.
+		if(allowed(usr)) //Check the ID inside, otherwise check the user.
 			if(!(text2path(href_list["release"]) in stack_list)) return
 			var/obj/item/stack/sheet/inp = stack_list[text2path(href_list["release"])]
 			var/obj/item/stack/sheet/out = new inp.type()
@@ -251,14 +189,14 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/mineral/ore_redemption/ex_act(severity, target)
+/obj/machinery/mineral/ore_redemption/dwarf/ex_act(severity, target)
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
 	..()
 
 //empty the redemption machine by stacks of at most max_amount (50 at this time) size
-/obj/machinery/mineral/ore_redemption/proc/empty_content()
+/* obj/machinery/mineral/ore_redemption/dwarf/proc/empty_content()
 	var/obj/item/stack/sheet/s
 
 	for(var/O in stack_list)
@@ -268,15 +206,5 @@
 			s.use(s.max_amount)
 		s.loc = loc
 		s.layer = initial(s.layer)
-		s.plane = initial(s.plane)
+		s.plane = initial(s.plane) */
 
-/obj/machinery/mineral/ore_redemption/power_change()
-	..()
-	update_icon()
-
-/obj/machinery/mineral/ore_redemption/update_icon()
-	if(powered())
-		icon_state = initial(icon_state)
-	else
-		icon_state = "[initial(icon_state)]-off"
-	return

@@ -57,6 +57,14 @@
 	materials = list(MAT_METAL=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/metal
 
+/obj/item/weapon/ore/dore
+	name = "dwarf ore"
+	icon_state = "Dwarf ore"
+	origin_tech = "materials=1"
+	points = 10
+	materials = list(MAT_DMETAL=MINERAL_MATERIAL_AMOUNT)
+	refined_type = /obj/item/stack/sheet/mineral/dmetal
+
 /obj/item/weapon/ore/glass
 	name = "sand pile"
 	icon_state = "Glass ore"

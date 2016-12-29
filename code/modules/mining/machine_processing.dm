@@ -24,6 +24,7 @@
 	var/dat = "<b>Smelter control console</b><br><br>"
 	//iron
 	if(machine.ore_iron || machine.ore_glass || machine.ore_plasma || machine.ore_uranium || machine.ore_gold || machine.ore_silver || machine.ore_diamond || machine.ore_clown || machine.ore_adamantine)
+		//metal
 		if(machine.ore_iron)
 			if (machine.selected_iron==1)
 				dat += "<A href='?src=\ref[src];sel_iron=no'><font color='green'>Smelting</font></A> "

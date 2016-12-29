@@ -26,8 +26,8 @@ Last space-z level = empty
 #define EMPTY_AREA_6 "Empty Area 6"
 #define EMPTY_AREA_7 "Empty Area 7"
 #define EMPTY_AREA_8 "Empty Area 8"
-#define MONORAIL "Monorail"
-#define BANPRISON "Ban Prison"
+//#define MONORAIL "Monorail"
+//#define BANPRISON "Ban Prison"
 #define COLONY "Colony"
 #define AWAY_MISSION "Away Mission"
 #define AWAY_MISSION_LIST list(AWAY_MISSION = SELFLOOPING)

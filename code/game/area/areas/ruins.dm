@@ -19,10 +19,10 @@
 
 
 //Areas
-/area/ruin/unpowered/hierophant
-	name = "Hierophant's Arena"
+///area/ruin/unpowered/hierophant
+//	name = "Hierophant's Arena"
 
-/area/ruin/unpowered/no_grav/way_home
+///area/ruin/unpowered/no_grav/way_home
 	name = "\improper Salvation"
 	icon_state = "away"
 
@@ -31,8 +31,8 @@
 /area/ruin/powered/golem_ship
 	name = "Free Golem Ship"
 
-/area/ruin/powered/syndicate_lava_base
-	name = "Secret Base"
+///area/ruin/powered/syndicate_lava_base
+//	name = "Secret Base"
 
 // Ruins of "onehalf" ship
 

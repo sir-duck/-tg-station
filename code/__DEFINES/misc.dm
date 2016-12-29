@@ -255,6 +255,7 @@
 
 //Material defines
 #define MAT_METAL		"$metal"
+#define MAT_DMETAL		"$dmetal"
 #define MAT_GLASS		"$glass"
 #define MAT_SILVER		"$silver"
 #define MAT_GOLD		"$gold"

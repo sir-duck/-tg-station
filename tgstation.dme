@@ -14,7 +14,7 @@
 
 // BEGIN_INCLUDE
 #include "_maps\__MAP_DEFINES.dm"
-#include "_maps\infinity_metastation.dm"
+#include "_maps\jtb_dwar.dm"
 #include "code\_compile_options.dm"
 #include "code\hub.dm"
 #include "code\world.dm"
@@ -1402,6 +1402,7 @@
 #include "code\modules\mining\machine_input_output_plates.dm"
 #include "code\modules\mining\machine_processing.dm"
 #include "code\modules\mining\machine_redemption.dm"
+#include "code\modules\mining\machine_redemption_dwarfs.dm"
 #include "code\modules\mining\machine_stacking.dm"
 #include "code\modules\mining\machine_unloading.dm"
 #include "code\modules\mining\machine_vending.dm"
