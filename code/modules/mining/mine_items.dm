@@ -113,6 +113,21 @@
 	desc = "A silver-plated pickaxe that mines slightly faster than standard-issue."
 	force = 17
 
+/*
+ *FRARF FICKAXE
+ */
+
+/obj/item/weapon/pickaxe/dwarf
+	name = "dwarfic pickaxe"
+	icon_state = "dwarf_pickaxe"
+	item_state = "dwarf_pickaxe"
+	w_class = WEIGHT_CLASS_NORMAL
+	materials = list(MAT_DMETAL=800)
+	digspeed = 19 //mines faster than a normal pickaxe, bought from mining vendor
+	origin_tech = "materials=4;engineering=5"
+	desc = "Ancient, but surprisingly high quality and sharp pick... Constructed by ancient dwarfs with mithril, it is very powerfull pickaxe..."
+	force = 25
+
 /obj/item/weapon/pickaxe/silver/poor //For ash-walker's
 	name = "ancient pickaxe"
 	icon_state = "spickaxe"
@@ -187,6 +202,20 @@
 	origin_tech = "materials=2;engineering=2"
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	sharpness = IS_SHARP
+
+//FRAFR SHOFEL
+
+/obj/item/weapon/shovel/dwarf
+	name = "dwarf shovel"
+	desc = "A large dwarfic tool for digging and moving some shitstuff."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "dwarf_shovel"
+	force = 13
+	digspeed = 19
+	throwforce = 13
+	item_state = "dwarf_shovel"
+	materials = list(MAT_DMETAL=50)
+	origin_tech = "materials=3;engineering=3"
 
 /obj/item/weapon/shovel/spade
 	name = "spade"
