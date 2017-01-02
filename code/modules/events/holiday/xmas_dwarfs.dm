@@ -2,9 +2,8 @@
 	name = "Some shit happened! (Not a Christmas)"
 	holidayID = DWARF_EVENT
 	typepath = /datum/round_event/dwarf
-	weight = 150
-	max_occurrences = 1
-	earliest_start = 20000
+	weight = -1
+	max_occurrences = 10
 
 /datum/round_event/dwarf
 	var/mob/living/carbon/human/dwarf //who is our shitty dwarfs?
@@ -12,13 +11,13 @@
 /datum/round_event/dwarf/announce()
 	priority_announce("12314567890!", "Unknown Transmission")
 
-/datum/round_event/santa/start()
+/datum/round_event/dwarf/start()
 	for(var/mob/M in dead_mob_list)
 		spawn(0)
 			var/response = alert(M, "DWARF NEEDED YOY! Do you want to be a part of some cool staff?", "Ho ho ho, moterfucker!", "Yes", "No")
-			if(response == "Yes" && M && M.client && M.stat == DEAD && !santa)
-				dwarf = new /mob/living/carbon/human/dwarf(pick(dwarf_start)) //TODO - нормальное место спавна сделать, на астероиде
-				dwawrf.key = M.key
+			if(response == "Yes" && M && M.client && M.stat == DEAD && !dwarf)
+				dwarf = new /mob/living/carbon/human(pick(dwarf_start)) //TODO - нормальное место спавна сделать, на астероиде
+				dwarf.key = M.key
 				qdel(M)
 
 				dwarf.real_name = "Santa Claus"
@@ -32,6 +31,7 @@
 				dwarf.hair_color = "FFF"
 				dwarf.facial_hair_color = "FFF"
 				dwarf.dna.add_mutation(DWARFISM)
+				dwarf.dna.species.species_traits = list(NOBREATH)
 
 				dwarf.equip_to_slot_or_del(new /obj/item/clothing/under/color/red, slot_w_uniform)
 				dwarf.equip_to_slot_or_del(new /obj/item/clothing/suit/space/santa, slot_wear_suit)
@@ -44,22 +44,22 @@
 				dwarf.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/santabag, slot_back)
 				dwarf.equip_to_slot_or_del(new /obj/item/device/flashlight, slot_r_store) //most blob spawn locations are really dark.
 
-				var/obj/item/weapon/card/id/gold/dwarfacard = new(dwarf)
+				var/obj/item/weapon/card/id/gold/dwarfcard = new(dwarf)
 				//santacard.update_label("Santa Claus", "Santa")
 				var/datum/job/captain/J = new/datum/job/captain
 				dwarfcard.access = J.get_access()
 				dwarf.equip_to_slot_or_del(dwarfcard, slot_wear_id)
 
-				santa.update_icons()
+				//santa.update_icons()
 
 				var/obj/item/weapon/storage/backpack/bag = dwarf.back
 
 				var/datum/objective/dwarf_objective = new()
-				dwar_objective.explanation_text = "Bring joy and presents to the station1112!"
-				dwar_objective.completed = 1 //lets cut our santas some slack.
-				dwar_objective.owner = dwar.mind
-				dwar.mind.objectives += dwar_objective
-				var/obj/effect/proc_holder/spell/targeted/area_teleport/teleport/telespell = new(dwar)
+				dwarf_objective.explanation_text = "Bring joy and presents to the station1112!"
+				dwarf_objective.completed = 1 //lets cut our santas some slack.
+				dwarf_objective.owner = dwarf.mind
+				dwarf.mind.objectives += dwarf_objective
+				var/obj/effect/proc_holder/spell/targeted/area_teleport/teleport/telespell = new(dwarf)
 				telespell.clothes_req = 0 //santa robes aren't actually magical.
 				dwarf.mind.AddSpell(telespell) //does the station have chimneys? WHO KNOWS!
 
