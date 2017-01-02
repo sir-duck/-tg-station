@@ -18,6 +18,20 @@
 	ambientsounds = list('sound/ambience/ambimine.ogg')
 	flags = NONE
 
+/area/mine/explored/dwarf
+	name = "Dmine"
+	icon_state = "awaycontent1"
+	music = null
+	always_unpowered = 1
+	requires_power = 1
+	poweralm = 1
+	power_environ = 1
+	power_equip = 1
+	power_light = 1
+	outdoors = 1
+	ambientsounds = list('sound/ambience/ambimine.ogg')
+	flags = NONE
+
 /area/mine/unexplored
 	name = "Mine"
 	icon_state = "unexplored"

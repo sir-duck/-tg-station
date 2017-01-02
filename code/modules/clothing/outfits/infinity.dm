@@ -30,18 +30,31 @@
 	W.update_label()
 
 
-/datum/outfit/jason_voorhees
-	name = "Jason Voorhees"
-
-	suit = /obj/item/clothing/suit/toggle/brown_jacket
-	mask = /obj/item/clothing/mask/gas/mime
-	r_hand = /obj/item/weapon/kitchen/knife/combat
-
-/datum/outfit/michael_myers
-	name = "Michael Myers"
-
-	mask = /obj/item/clothing/mask/gas/mime
-	r_hand = /obj/item/weapon/kitchen/knife
+/datum/outfit/super_miner
+	name = "MINING"
+	uniform = /obj/item/clothing/under/color/brown
+	shoes = /obj/item/clothing/shoes/workboots/mining
+	suit = /obj/item/clothing/suit/hooded/explorer
+	suit_store = /obj/item/weapon/tank/internals/oxygen
+	mask = /obj/item/clothing/mask/gas/explorer
+	belt = /obj/item/weapon/storage/belt/utility/full
+	glasses = /obj/item/clothing/glasses/welding
+	ears = /obj/item/device/radio/headset
+	gloves = /obj/item/clothing/gloves/combat
+	l_pocket = /obj/item/device/flashlight/seclite
+	r_pocket = /obj/item/weapon/extinguisher/mini
+	back = /obj/item/weapon/storage/backpack/explorer
+	backpack_contents = list(/obj/item/stack/sheet/metal/fifty=2,\
+		/obj/item/stack/sheet/glass/fifty=1,\
+		/obj/item/weapon/gun/energy/e_gun/nuclear/event=1,\
+		/obj/item/weapon/pickaxe/speardrill =1,\
+		/obj/item/weapon/storage/bag/ore=1,\
+		/obj/item/device/t_scanner/adv_mining_scanner/lesser=1,\
+		/obj/item/clothing/glasses/meson =1, \
+		/obj/item/weapon/gun/energy/kinetic_accelerator =1,\
+		/obj/item/borg/upgrade/modkit/cooldown =3,\
+		/obj/item/borg/upgrade/modkit/trigger_guard =2)
+	id = /obj/item/weapon/card/id
 
 
 /datum/outfit/security_private
