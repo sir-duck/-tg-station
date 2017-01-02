@@ -30,15 +30,15 @@ Mineral Sheets
 var/global/list/datum/stack_recipe/dmetal_recipes = list ( \
 	new/datum/stack_recipe("pickaxe", /obj/item/weapon/pickaxe/dwarf, on_floor = 1), \
 	new/datum/stack_recipe("shovel", /obj/item/weapon/shovel/dwarf, on_floor = 1), \
-	new/datum/stack_recipe("chair", /obj/structure/chair, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("swivel chair", /obj/structure/chair/office/dark, 5, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("comfy chair", /obj/structure/chair/comfy/beige, 2, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("bed", /obj/structure/bed, 2, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("dwarf helmet", /obj/item/clothing/head/helmet/thunderdome/dwarf, 15, time = 10,  on_floor = 1), \
+	new/datum/stack_recipe("dwarf armor", /obj/item/clothing/suit/armor/vest/alt/dwarf, 15, time = 10,  on_floor = 1), \
+	new/datum/stack_recipe("war hammer", /obj/item/weapon/twohanded/required/hammer, 15, time = 10, on_floor = 1), \
+	new/datum/stack_recipe("speardrill", /obj/item/weapon/pickaxe/speardrill, 10, on_floor = 1), \
 )
 /obj/item/stack/sheet/mineral/dmetal
 	name = "Dwarf metal"
 	desc = "Sheets made out of special fucking cool dwarf metal."
-	singular_name = "dmetal sheet"
+	singular_name = "dwarf metal sheet"
 	icon_state = "sheet-dmetal"
 	materials = list(MAT_DMETAL=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 10
