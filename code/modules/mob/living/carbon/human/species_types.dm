@@ -27,6 +27,14 @@
 	var/obj/item/device/flightpack/F = H.get_flightpack()
 	if(istype(F) && (F.flight) && F.allow_thrust(0.01, src))
 		return TRUE
+
+/*
+ DWARFFF
+*/
+/datum/species/human/dwarf
+	name = "Dwarf"
+	id = "dwarf"
+	species_traits = list(NOBREATH)
 /*
  LIZARDPEOPLE
 */

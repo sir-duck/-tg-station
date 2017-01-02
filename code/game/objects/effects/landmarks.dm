@@ -265,6 +265,10 @@
 /obj/effect/landmark/ban_prison
 	name = "ban_prison"
 
+//ËÀÍÄÌÀĞÊÀ ÄÂÀĞÔÎÂ / DRWARFS LANDMARK
+/obj/effect/landmark/dwarf_start
+	name = "dwarf_start"
+
 //generic event spawns
 /obj/effect/landmark/event_spawn
 	name = "generic event spawn"
