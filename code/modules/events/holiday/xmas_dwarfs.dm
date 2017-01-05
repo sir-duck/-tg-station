@@ -15,8 +15,8 @@
 	for(var/mob/M in dead_mob_list)
 		spawn(0)
 			var/response = alert(M, "DWARF NEEDED YOY! Do you want to be a part of some cool staff?", "Ho ho ho, moterfucker!", "Yes", "No")
-			if(response == "Yes" && M && M.client && M.stat == DEAD && !dwarf)
-				dwarf = new /mob/living/carbon/human(pick(dwarf_start)) //TODO - нормальное место спавна сделать, на астероиде
+			if(response == "Yes" && M && M.client && M.stat == DEAD)
+				dwarf = new /mob/living/carbon/human(pick(dwarf_start))
 				dwarf.key = M.key
 				qdel(M)
 
@@ -33,7 +33,7 @@
 				dwarf.dna.add_mutation(DWARFISM)
 				dwarf.dna.species.species_traits = list(NOBREATH)
 
-				dwarf.equip_to_slot_or_del(new /obj/item/clothing/under/color/red, slot_w_uniform)
+				dwarf.equip_to_slot_or_del(new /obj/item/clothing/under/color/red, slot_w_uniform) //TODO - NORAMLNIY EQUP.
 				dwarf.equip_to_slot_or_del(new /obj/item/clothing/suit/space/santa, slot_wear_suit)
 				dwarf.equip_to_slot_or_del(new /obj/item/clothing/head/santa, slot_head)
 				dwarf.equip_to_slot_or_del(new /obj/item/clothing/mask/breath, slot_wear_mask)
@@ -42,25 +42,21 @@
 				dwarf.equip_to_slot_or_del(new /obj/item/weapon/tank/internals/emergency_oxygen/double, slot_belt)
 				dwarf.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain, slot_ears)
 				dwarf.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/santabag, slot_back)
-				dwarf.equip_to_slot_or_del(new /obj/item/device/flashlight, slot_r_store) //most blob spawn locations are really dark.
+				dwarf.equip_to_slot_or_del(new /obj/item/device/flashlight, slot_r_store)
 
 				var/obj/item/weapon/card/id/gold/dwarfcard = new(dwarf)
-				//santacard.update_label("Santa Claus", "Santa")
 				var/datum/job/captain/J = new/datum/job/captain
 				dwarfcard.access = J.get_access()
 				dwarf.equip_to_slot_or_del(dwarfcard, slot_wear_id)
 
-				//santa.update_icons()
+				dwarf.update_icons() //зачем.?
 
-				var/obj/item/weapon/storage/backpack/bag = dwarf.back
+				var/obj/item/weapon/storage/backpack/explorer = dwarf.back
 
 				var/datum/objective/dwarf_objective = new()
 				dwarf_objective.explanation_text = "Bring joy and presents to the station1112!"
 				dwarf_objective.completed = 1 //lets cut our santas some slack.
 				dwarf_objective.owner = dwarf.mind
 				dwarf.mind.objectives += dwarf_objective
-				var/obj/effect/proc_holder/spell/targeted/area_teleport/teleport/telespell = new(dwarf)
-				telespell.clothes_req = 0 //santa robes aren't actually magical.
-				dwarf.mind.AddSpell(telespell) //does the station have chimneys? WHO KNOWS!
 
-				dwarf << "<span class='boldannounce'>234You are Santa! Your objective is to bring joy to the people on this station. You can conjure more presents using a spell, and there are several presents in your bag.</span>"
+				dwarf << "<span class='boldannounce'>BADASS! Вставить что-нибудь пристойное в этот текст! Помимо всего, ЖТБ - плохой кодер.</span>"
